@@ -106,6 +106,7 @@ function update(dt) {
       block.alive = false;
       score += 10;
       ball.vy = -ball.vy;
+      if (blocks.every(b => !b.alive)) gameState = 'win';
       break; // one block per frame
     }
   }
@@ -122,6 +123,16 @@ function update(dt) {
   }
 }
 
+function drawOverlay(message) {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 64px monospace';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(message, canvas.width / 2, canvas.height / 2);
+}
+
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -131,6 +142,9 @@ function draw() {
 
   drawSprite(ctx, 'paddle', paddle.x, paddle.y, paddle.w, paddle.h);
   drawSprite(ctx, 'ball', ball.x, ball.y, ball.w, ball.h);
+
+  if (gameState === 'gameover') drawOverlay('GAME OVER');
+  if (gameState === 'win')      drawOverlay('¡GANASTE!');
 }
 
 let lastTime = null;
