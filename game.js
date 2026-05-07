@@ -2,10 +2,18 @@ const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
 const PADDLE_SPEED = 400;
+const BLOCK_COLS = 10;
+const BLOCK_ROWS = 6;
+const BLOCK_W = 32;
+const BLOCK_H = 16;
+const BLOCK_COLORS = ['red', 'yellow', 'cyan', 'magenta', 'hotpink', 'green'];
+const BLOCKS_ORIGIN_X = 104;
+const BLOCKS_ORIGIN_Y = 80;
 
 const paddle = { x: 0, y: 560, w: 162, h: 14 };
 const ball   = { x: 0, y: 0, w: 16, h: 16, vx: 200, vy: -300 };
 
+let blocks = [];
 let lives = 3;
 let score = 0;
 let gameState = 'playing';
@@ -21,6 +29,31 @@ function initBall() {
   ball.y = paddle.y - ball.h;
   ball.vx = 200;
   ball.vy = -300;
+}
+
+function initBlocks() {
+  blocks = [];
+  for (let row = 0; row < BLOCK_ROWS; row++) {
+    for (let col = 0; col < BLOCK_COLS; col++) {
+      blocks.push({
+        x: BLOCKS_ORIGIN_X + col * BLOCK_W,
+        y: BLOCKS_ORIGIN_Y + row * BLOCK_H,
+        w: BLOCK_W,
+        h: BLOCK_H,
+        color: BLOCK_COLORS[row],
+        alive: true,
+      });
+    }
+  }
+}
+
+function collideAABB(block) {
+  return (
+    ball.x < block.x + block.w &&
+    ball.x + ball.w > block.x &&
+    ball.y < block.y + block.h &&
+    ball.y + ball.h > block.y
+  );
 }
 
 canvas.addEventListener('mousemove', (e) => {
@@ -66,6 +99,17 @@ function update(dt) {
     ball.vy = -Math.abs(ball.vy);
   }
 
+  // Block collisions
+  for (const block of blocks) {
+    if (!block.alive) continue;
+    if (collideAABB(block)) {
+      block.alive = false;
+      score += 10;
+      ball.vy = -ball.vy;
+      break; // one block per frame
+    }
+  }
+
   // Ball lost
   if (ball.y > canvas.height) {
     lives--;
@@ -80,6 +124,11 @@ function update(dt) {
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (const block of blocks) {
+    if (block.alive) drawSprite(ctx, 'block_' + block.color, block.x, block.y, block.w, block.h);
+  }
+
   drawSprite(ctx, 'paddle', paddle.x, paddle.y, paddle.w, paddle.h);
   drawSprite(ctx, 'ball', ball.x, ball.y, ball.w, ball.h);
 }
@@ -100,5 +149,6 @@ function loop(timestamp) {
 loadSpritesheet(() => {
   initPaddle();
   initBall();
+  initBlocks();
   requestAnimationFrame(loop);
 });
