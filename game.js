@@ -143,6 +143,16 @@ function draw() {
   drawSprite(ctx, 'paddle', paddle.x, paddle.y, paddle.w, paddle.h);
   drawSprite(ctx, 'ball', ball.x, ball.y, ball.w, ball.h);
 
+  if (gameState === 'playing') {
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 18px monospace';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText('Score: ' + score, 10, 10);
+    ctx.textAlign = 'right';
+    ctx.fillText('Vidas: ' + lives, canvas.width - 10, 10);
+  }
+
   if (gameState === 'gameover') drawOverlay('GAME OVER');
   if (gameState === 'win')      drawOverlay('¡GANASTE!');
 }
