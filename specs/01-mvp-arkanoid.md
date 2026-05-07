@@ -1,6 +1,6 @@
 # 01 — MVP jugable de Arkanoid
 
-- **Estado:** Draft
+- **Estado:** aprobado
 - **Fecha:** 2026-05-07
 - **Dependencias:** ninguna (primer spec del proyecto)
 - **Objetivo:** Implementar un juego de Arkanoid jugable en una sola pantalla HTML/Canvas de 800×600 px, con paddle, pelota, parrilla de bloques 10×6, 3 vidas, score y overlays de game-over/victoria.
