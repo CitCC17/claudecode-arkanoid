@@ -9,6 +9,8 @@ const BLOCK_H = 16;
 const BLOCK_COLORS = ['red', 'yellow', 'cyan', 'magenta', 'hotpink', 'green'];
 const BLOCKS_ORIGIN_X = 104;
 const BLOCKS_ORIGIN_Y = 80;
+const BASE_BALL_VX = 200;
+const BASE_BALL_VY = -300;
 
 const paddle = { x: 0, y: 560, w: 162, h: 14 };
 const ball   = { x: 0, y: 0, w: 16, h: 16, vx: 200, vy: -300 };
@@ -21,6 +23,8 @@ let explosions = [];
 let lives = 3;
 let score = 0;
 let gameState = 'playing';
+let currentLevel = 1;
+let isPaused = false;
 
 const keys = { ArrowLeft: false, ArrowRight: false };
 
@@ -87,9 +91,9 @@ function update(dt) {
   ball.y += ball.vy * dt;
 
   // Wall bounces (left, right, top)
-  if (ball.x <= 0) { ball.x = 0; ball.vx = Math.abs(ball.vx); }
-  if (ball.x + ball.w >= canvas.width) { ball.x = canvas.width - ball.w; ball.vx = -Math.abs(ball.vx); }
-  if (ball.y <= 0) { ball.y = 0; ball.vy = Math.abs(ball.vy); }
+  if (ball.x <= 0) { ball.x = 0; ball.vx = Math.abs(ball.vx); bounceSound.cloneNode().play(); }
+  if (ball.x + ball.w >= canvas.width) { ball.x = canvas.width - ball.w; ball.vx = -Math.abs(ball.vx); bounceSound.cloneNode().play(); }
+  if (ball.y <= 0) { ball.y = 0; ball.vy = Math.abs(ball.vy); bounceSound.cloneNode().play(); }
 
   // Paddle bounce
   if (
@@ -101,6 +105,7 @@ function update(dt) {
   ) {
     ball.y = paddle.y - ball.h;
     ball.vy = -Math.abs(ball.vy);
+    bounceSound.cloneNode().play();
   }
 
   // Block collisions
@@ -111,6 +116,7 @@ function update(dt) {
       explosions.push({ x: block.x, y: block.y, w: block.w, h: block.h, color: block.color, elapsed: 0 });
       score += 10;
       ball.vy = -ball.vy;
+      breakSound.cloneNode().play();
       if (blocks.every(b => !b.alive)) gameState = 'win';
       break; // one block per frame
     }

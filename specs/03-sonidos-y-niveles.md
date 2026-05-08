@@ -49,7 +49,7 @@ breakSound; // HTMLAudioElement — cargado al inicio
 
 ### Definición de niveles
 
-Array estático `LEVELS` (constante en `game.js`), un objeto por nivel:
+Array estático `LEVELS` (constante en `levels.js`), un objeto por nivel:
 
 ```js
 LEVELS = [
@@ -98,7 +98,8 @@ isPaused; // boolean, inicia en false
    - Usar `cloneNode()` para permitir solapamiento de sonidos simultáneos.
 
 3. **Definir `LEVELS`** — declarar el array estático con los 5 objetos de nivel
-   (patrones y multiplicadores de velocidad) antes del game loop.
+   (patrones y multiplicadores de velocidad) en un archivo independiente `levels.js`,
+   e incluirlo en `index.html` antes de `game.js`.
 
 4. **Función `loadLevel(n)`** — recibe el número de nivel (1–5), reconstruye el array
    `blocks` según `LEVELS[n-1].blocks`, reposiciona la pelota sobre el paddle,
@@ -152,7 +153,7 @@ isPaused; // boolean, inicia en false
 | ---------------------------- | ------------------------------------------ | --------------------------------- | ------------------------------------------------------------- |
 | Sonidos simultáneos          | `cloneNode().play()`                       | Reusar un solo `Audio` por sonido | Un solo elemento se cancela si el sonido aún no terminó       |
 | Control de volumen           | Sin control — volumen por defecto          | Slider o tecla mute               | Fuera del alcance, añade complejidad sin valor claro          |
-| Definición de niveles        | Array estático `LEVELS` en `game.js`       | Archivo JSON externo              | Sin build ni servidor; JSON requeriría fetch asíncrono        |
+| Definición de niveles        | Array estático `LEVELS` en `levels.js`     | Archivo JSON externo              | Sin build ni servidor; JSON requeriría fetch asíncrono        |
 | Velocidad por nivel          | Multiplicador sobre velocidad base (+10 %) | Velocidad fija distinta por nivel | Más predecible y fácil de ajustar                             |
 | Pausa                        | P y Escape alternan `isPaused`             | Solo una tecla                    | Dos teclas cubren convenciones distintas de jugadores         |
 | Selector de nivel            | Botones numéricos en overlay de pausa      | Menú principal separado           | Reutiliza el overlay existente; accesible sin salir del juego |
