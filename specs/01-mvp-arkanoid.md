@@ -1,6 +1,6 @@
 # 01 — MVP jugable de Arkanoid
 
-- **Estado:** aprobado
+- **Estado:** Implementado
 - **Fecha:** 2026-05-07
 - **Dependencias:** ninguna (primer spec del proyecto)
 - **Objetivo:** Implementar un juego de Arkanoid jugable en una sola pantalla HTML/Canvas de 800×600 px, con paddle, pelota, parrilla de bloques 10×6, 3 vidas, score y overlays de game-over/victoria.
@@ -103,10 +103,10 @@ blocks = [{ x, y, w: 32, h: 16, color, alive: bool }];
 
 ## Criterios de aceptación
 
-- [ ] `index.html` abre en el navegador sin errores en consola
-- [ ] El canvas mide 800×600 px y tiene fondo negro
-- [ ] El paddle se mueve con el mouse sin salirse del canvas
-- [ ] El paddle se mueve con ←→ sin salirse del canvas
+- [x] `index.html` abre en el navegador sin errores en consola
+- [x] El canvas mide 800×600 px y tiene fondo negro
+- [x] El paddle se mueve con el mouse sin salirse del canvas
+- [x] El paddle se mueve con ←→ sin salirse del canvas
 - [ ] La pelota arranca moviéndose al cargar la página
 - [ ] La pelota rebota en las tres paredes (izquierda, derecha, techo)
 - [ ] La pelota rebota en el paddle

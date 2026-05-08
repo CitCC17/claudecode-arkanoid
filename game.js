@@ -134,7 +134,8 @@ function drawOverlay(message) {
 }
 
 function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   for (const block of blocks) {
     if (block.alive) drawSprite(ctx, 'block_' + block.color, block.x, block.y, block.w, block.h);
@@ -149,8 +150,12 @@ function draw() {
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';
     ctx.fillText('Score: ' + score, 10, 10);
-    ctx.textAlign = 'right';
-    ctx.fillText('Vidas: ' + lives, canvas.width - 10, 10);
+    const ballSize = 16;
+    const ballSpacing = 4;
+    for (let i = 0; i < lives; i++) {
+      const bx = canvas.width - 10 - (lives - i) * (ballSize + ballSpacing);
+      drawSprite(ctx, 'ball', bx, 10, ballSize, ballSize);
+    }
   }
 
   if (gameState === 'gameover') drawOverlay('GAME OVER');
