@@ -113,6 +113,10 @@ function update(dt) {
     }
   }
 
+  // Explosions
+  for (const exp of explosions) exp.elapsed += dt * 1000;
+  explosions = explosions.filter(exp => exp.elapsed < EXPLOSION_DURATION);
+
   // Ball lost
   if (ball.y > canvas.height) {
     lives--;
@@ -141,6 +145,11 @@ function draw() {
 
   for (const block of blocks) {
     if (block.alive) drawSprite(ctx, 'block_' + block.color, block.x, block.y, block.w, block.h);
+  }
+
+  for (const exp of explosions) {
+    const frameIndex = Math.min(Math.floor(exp.elapsed / EXPLOSION_DURATION * 4), 3);
+    drawFrame(ctx, EXPLOSION_FRAMES[exp.color][frameIndex], exp.x, exp.y, exp.w, exp.h);
   }
 
   drawSprite(ctx, 'paddle', paddle.x, paddle.y, paddle.w, paddle.h);
