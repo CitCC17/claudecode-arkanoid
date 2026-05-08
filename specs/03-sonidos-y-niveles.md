@@ -1,6 +1,6 @@
 # 03 — Sonidos y niveles
 
-- **Estado:** Aprobado
+- **Estado:** Implementado
 - **Fecha:** 2026-05-08
 - **Dependencias:** 01-mvp-arkanoid, 02-animacion-explosion-bloques
 - **Objetivo:** Añadir efectos de sonido (rebote y destrucción de bloque) y 5 niveles con patrones de bloques distintos, velocidad de pelota creciente (+10 % por nivel) y selector de nivel accesible desde la pausa (tecla P / Escape).
