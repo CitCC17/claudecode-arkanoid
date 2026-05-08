@@ -1,6 +1,6 @@
 # 02 — Animación de explosión al romper bloques
 
-- **Estado:** Draft
+- **Estado:** Aprobado
 - **Fecha:** 2026-05-08
 - **Dependencias:** 01-mvp-arkanoid (juego base implementado)
 - **Objetivo:** Reproducir la animación de explosión del spritesheet en la posición de cada bloque destruido, mientras el juego continúa sin pausas.

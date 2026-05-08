@@ -14,6 +14,7 @@ const paddle = { x: 0, y: 560, w: 162, h: 14 };
 const ball   = { x: 0, y: 0, w: 16, h: 16, vx: 200, vy: -300 };
 
 let blocks = [];
+let explosions = [];
 let lives = 3;
 let score = 0;
 let gameState = 'playing';
@@ -104,6 +105,7 @@ function update(dt) {
     if (!block.alive) continue;
     if (collideAABB(block)) {
       block.alive = false;
+      explosions.push({ x: block.x, y: block.y, w: block.w, h: block.h, color: block.color, elapsed: 0 });
       score += 10;
       ball.vy = -ball.vy;
       if (blocks.every(b => !b.alive)) gameState = 'win';
