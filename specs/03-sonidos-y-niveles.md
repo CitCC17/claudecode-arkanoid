@@ -126,14 +126,14 @@ isPaused; // boolean, inicia en false
 
 ## Criterios de aceptación
 
-- [ ] Al rebotar la pelota en una pared o en el paddle suena `ball-bounce.mp3`
-- [ ] Al destruir un bloque suena `break-sound.mp3` y no suena `ball-bounce.mp3`
-- [ ] Dos sonidos pueden sonar simultáneamente sin que uno cancele al otro
-- [ ] El nivel 1 muestra la parrilla completa 10×6
-- [ ] El nivel 2 muestra un patrón de pirámide centrada
-- [ ] El nivel 3 muestra un tablero de ajedrez (posiciones pares ocupadas)
-- [ ] El nivel 4 muestra filas con huecos
-- [ ] El nivel 5 muestra un marco con cruz central
+- [x] Al rebotar la pelota en una pared o en el paddle suena `ball-bounce.mp3`
+- [x] Al destruir un bloque suena `break-sound.mp3` y no suena `ball-bounce.mp3`
+- [x] Dos sonidos pueden sonar simultáneamente sin que uno cancele al otro
+- [x] El nivel 1 muestra la parrilla completa 10×6
+- [x] El nivel 2 muestra un patrón de pirámide centrada
+- [x] El nivel 3 muestra un tablero de ajedrez (posiciones pares ocupadas)
+- [x] El nivel 4 muestra filas con huecos
+- [x] El nivel 5 muestra un marco con cruz central
 - [ ] Cada nivel tiene una paleta de colores distinta a los demás
 - [ ] Al completar todos los bloques de un nivel, se carga el siguiente automáticamente
 - [ ] La pelota es notablemente más rápida en el nivel 5 que en el nivel 1

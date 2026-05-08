@@ -67,6 +67,23 @@ function collideAABB(block) {
   );
 }
 
+canvas.addEventListener('click', (e) => {
+  if (!isPaused) return;
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  const mx = (e.clientX - rect.left) * scaleX;
+  const my = (e.clientY - rect.top) * scaleY;
+  for (let i = 0; i < 5; i++) {
+    const bx = PAUSE_BTN_ROW_X + i * (PAUSE_BTN_W + PAUSE_BTN_GAP);
+    if (mx >= bx && mx <= bx + PAUSE_BTN_W && my >= PAUSE_BTN_Y && my <= PAUSE_BTN_Y + PAUSE_BTN_H) {
+      loadLevel(i + 1);
+      isPaused = false;
+      return;
+    }
+  }
+});
+
 canvas.addEventListener('mousemove', (e) => {
   const rect = canvas.getBoundingClientRect();
   const scaleX = canvas.width / rect.width;
@@ -157,6 +174,43 @@ function drawOverlay(message) {
   ctx.fillText(message, canvas.width / 2, canvas.height / 2);
 }
 
+const PAUSE_BTN_W = 60;
+const PAUSE_BTN_H = 40;
+const PAUSE_BTN_GAP = 12;
+const PAUSE_BTN_Y = 340;
+const PAUSE_BTN_ROW_X = (canvas.width - (5 * PAUSE_BTN_W + 4 * PAUSE_BTN_GAP)) / 2;
+
+function drawPauseOverlay() {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.65)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 56px monospace';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('PAUSA', canvas.width / 2, 260);
+
+  ctx.font = 'bold 16px monospace';
+  ctx.fillText('Saltar al nivel:', canvas.width / 2, 310);
+
+  for (let i = 0; i < 5; i++) {
+    const bx = PAUSE_BTN_ROW_X + i * (PAUSE_BTN_W + PAUSE_BTN_GAP);
+    const isActive = (i + 1) === currentLevel;
+    ctx.fillStyle = isActive ? '#f0c040' : '#444';
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(bx, PAUSE_BTN_Y, PAUSE_BTN_W, PAUSE_BTN_H, 6);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = isActive ? '#000' : '#fff';
+    ctx.font = 'bold 20px monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(i + 1, bx + PAUSE_BTN_W / 2, PAUSE_BTN_Y + PAUSE_BTN_H / 2);
+  }
+}
+
 function draw() {
   ctx.fillStyle = '#000';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -179,6 +233,8 @@ function draw() {
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';
     ctx.fillText('Score: ' + score, 10, 10);
+    ctx.textAlign = 'center';
+    ctx.fillText('Nivel: ' + currentLevel, canvas.width / 2, 10);
     const ballSize = 16;
     const ballSpacing = 4;
     for (let i = 0; i < lives; i++) {
@@ -189,6 +245,7 @@ function draw() {
 
   if (gameState === 'gameover') drawOverlay('GAME OVER');
   if (gameState === 'win')      drawOverlay('¡Completaste el juego!');
+  if (isPaused)                 drawPauseOverlay();
 }
 
 let lastTime = null;
