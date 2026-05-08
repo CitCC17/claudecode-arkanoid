@@ -13,6 +13,9 @@ const BLOCKS_ORIGIN_Y = 80;
 const paddle = { x: 0, y: 560, w: 162, h: 14 };
 const ball   = { x: 0, y: 0, w: 16, h: 16, vx: 200, vy: -300 };
 
+const bounceSound = new Audio('assets/sounds/ball-bounce.mp3');
+const breakSound  = new Audio('assets/sounds/break-sound.mp3');
+
 let blocks = [];
 let explosions = [];
 let lives = 3;
