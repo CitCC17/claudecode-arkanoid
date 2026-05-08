@@ -4,15 +4,15 @@ const ctx = canvas.getContext('2d');
 const PADDLE_SPEED = 400;
 const BLOCK_COLS = 10;
 const BLOCK_ROWS = 6;
-const BLOCK_W = 32;
-const BLOCK_H = 16;
+const BLOCK_W = 64;
+const BLOCK_H = 24;
 const BLOCK_COLORS = ['red', 'yellow', 'cyan', 'magenta', 'hotpink', 'green'];
-const BLOCKS_ORIGIN_X = 104;
+const BLOCKS_ORIGIN_X = (800 - BLOCK_COLS * BLOCK_W) / 2;
 const BLOCKS_ORIGIN_Y = 80;
 const BASE_BALL_VX = 200;
 const BASE_BALL_VY = -300;
 
-const paddle = { x: 0, y: 560, w: 162, h: 14 };
+const paddle = { x: 0, y: 560, w: 81, h: 14 };
 const ball   = { x: 0, y: 0, w: 16, h: 16, vx: 200, vy: -300 };
 
 const bounceSound = new Audio('assets/sounds/ball-bounce.mp3');
