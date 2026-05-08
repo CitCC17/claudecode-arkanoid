@@ -1,6 +1,6 @@
 # 02 — Animación de explosión al romper bloques
 
-- **Estado:** Aprobado
+- **Estado:** Implementado
 - **Fecha:** 2026-05-08
 - **Dependencias:** 01-mvp-arkanoid (juego base implementado)
 - **Objetivo:** Reproducir la animación de explosión del spritesheet en la posición de cada bloque destruido, mientras el juego continúa sin pausas.
@@ -69,13 +69,13 @@ No se persiste ningún dato entre sesiones.
 
 ## Criterios de aceptación
 
-- [ ] Al romper un bloque, aparece una animación en su posición antes de desaparecer visualmente
-- [ ] La animación recorre los 4 frames de `EXPLOSION_FRAMES[color]` en 150 ms
-- [ ] El color de la explosión corresponde al color del bloque destruido
-- [ ] El bloque ya no genera colisiones desde el instante en que es destruido
+- [x] Al romper un bloque, aparece una animación en su posición antes de desaparecer visualmente
+- [x] La animación recorre los 4 frames de `EXPLOSION_FRAMES[color]` en 150 ms
+- [x] El color de la explosión corresponde al color del bloque destruido
+- [x] El bloque ya no genera colisiones desde el instante en que es destruido
 - [ ] Se pueden reproducir múltiples explosiones simultáneas sin que se interfieran
-- [ ] Al terminar la animación (150 ms), la explosión se elimina del array y deja de dibujarse
-- [ ] El juego no se pausa ni pierde fluidez durante las explosiones
+- [x] Al terminar la animación (150 ms), la explosión se elimina del array y deja de dibujarse
+- [x] El juego no se pausa ni pierde fluidez durante las explosiones
 
 ---
 
