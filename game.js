@@ -33,26 +33,29 @@ function initPaddle() {
 }
 
 function initBall() {
+  const speed = LEVELS[currentLevel - 1].speed;
   ball.x = paddle.x + (paddle.w - ball.w) / 2;
   ball.y = paddle.y - ball.h;
-  ball.vx = 200;
-  ball.vy = -300;
+  ball.vx = BASE_BALL_VX * speed;
+  ball.vy = BASE_BALL_VY * speed;
 }
 
-function initBlocks() {
-  blocks = [];
-  for (let row = 0; row < BLOCK_ROWS; row++) {
-    for (let col = 0; col < BLOCK_COLS; col++) {
-      blocks.push({
-        x: BLOCKS_ORIGIN_X + col * BLOCK_W,
-        y: BLOCKS_ORIGIN_Y + row * BLOCK_H,
-        w: BLOCK_W,
-        h: BLOCK_H,
-        color: BLOCK_COLORS[row],
-        alive: true,
-      });
-    }
-  }
+function loadLevel(n) {
+  currentLevel = n;
+  const level = LEVELS[n - 1];
+  blocks = level.blocks.map(b => ({
+    x: BLOCKS_ORIGIN_X + b.col * BLOCK_W,
+    y: BLOCKS_ORIGIN_Y + b.row * BLOCK_H,
+    w: BLOCK_W,
+    h: BLOCK_H,
+    color: b.color,
+    alive: true,
+  }));
+  explosions = [];
+  ball.x = paddle.x + (paddle.w - ball.w) / 2;
+  ball.y = paddle.y - ball.h;
+  ball.vx = BASE_BALL_VX * level.speed;
+  ball.vy = BASE_BALL_VY * level.speed;
 }
 
 function collideAABB(block) {
@@ -73,6 +76,9 @@ canvas.addEventListener('mousemove', (e) => {
 
 document.addEventListener('keydown', (e) => {
   if (e.key in keys) keys[e.key] = true;
+  if ((e.key === 'p' || e.key === 'P' || e.key === 'Escape') && gameState === 'playing') {
+    isPaused = !isPaused;
+  }
 });
 
 document.addEventListener('keyup', (e) => {
@@ -117,7 +123,10 @@ function update(dt) {
       score += 10;
       ball.vy = -ball.vy;
       breakSound.cloneNode().play();
-      if (blocks.every(b => !b.alive)) gameState = 'win';
+      if (blocks.every(b => !b.alive)) {
+        if (currentLevel < 5) loadLevel(currentLevel + 1);
+        else gameState = 'win';
+      }
       break; // one block per frame
     }
   }
@@ -179,7 +188,7 @@ function draw() {
   }
 
   if (gameState === 'gameover') drawOverlay('GAME OVER');
-  if (gameState === 'win')      drawOverlay('¡GANASTE!');
+  if (gameState === 'win')      drawOverlay('¡Completaste el juego!');
 }
 
 let lastTime = null;
@@ -189,7 +198,7 @@ function loop(timestamp) {
   const dt = (timestamp - lastTime) / 1000;
   lastTime = timestamp;
 
-  update(dt);
+  if (!isPaused) update(dt);
   draw();
 
   requestAnimationFrame(loop);
@@ -197,7 +206,6 @@ function loop(timestamp) {
 
 loadSpritesheet(() => {
   initPaddle();
-  initBall();
-  initBlocks();
+  loadLevel(1);
   requestAnimationFrame(loop);
 });
