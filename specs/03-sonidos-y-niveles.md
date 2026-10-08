@@ -135,15 +135,16 @@ isPaused; // boolean, inicia en false
 - [x] El nivel 4 muestra filas con huecos
 - [x] El nivel 5 muestra un marco con cruz central
 - [ ] Cada nivel tiene una paleta de colores distinta a los demás
-- [ ] Al completar todos los bloques de un nivel, se carga el siguiente automáticamente
-- [ ] La pelota es notablemente más rápida en el nivel 5 que en el nivel 1
-- [ ] Al completar el nivel 5 aparece el overlay "¡Completaste el juego!"
-- [ ] Las teclas P y Escape pausan y reanudan el juego
-- [ ] Durante la pausa el juego no avanza (pelota y bloques congelados)
-- [ ] El overlay de pausa muestra 5 botones numerados
-- [ ] Al pulsar un botón de nivel en la pausa, el juego carga ese nivel con su velocidad correcta
-- [ ] El HUD muestra el nivel actual en todo momento durante el juego
-- [ ] El score acumula correctamente al pasar de un nivel a otro
+  > **Pendiente:** los niveles 1 y 4 usan los mismos 6 colores (solo cambia el orden por fila). Corregirlo cambia el juego, así que va en un spec propio.
+- [x] Al completar todos los bloques de un nivel, se carga el siguiente automáticamente
+- [x] La pelota es notablemente más rápida en el nivel 5 que en el nivel 1
+- [x] Al completar el nivel 5 aparece el overlay "¡Completaste el juego!"
+- [x] Las teclas P y Escape pausan y reanudan el juego
+- [x] Durante la pausa el juego no avanza (pelota y bloques congelados)
+- [x] El overlay de pausa muestra 5 botones numerados
+- [x] Al pulsar un botón de nivel en la pausa, el juego carga ese nivel con su velocidad correcta
+- [x] El HUD muestra el nivel actual en todo momento durante el juego
+- [x] El score acumula correctamente al pasar de un nivel a otro
 
 ---
 

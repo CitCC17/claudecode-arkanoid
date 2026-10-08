@@ -18,7 +18,7 @@ No hay paso de build ni servidor requerido. Para probar cambios: `open index.htm
 |---|---|
 | `index.html` | Punto de entrada; carga scripts y el `<canvas>` de 800×600 px |
 | `game.js` | Toda la lógica del juego (estado, loop, físicas, render, HUD, overlays) |
-| `levels.js` | Define `LEVELS`: array de 5 niveles con `blocks[]` y `ballSpeedMultiplier` |
+| `levels.js` | Define `LEVELS`: array de 5 niveles con `blocks[]` y `speed` (multiplicador de velocidad de la pelota) |
 | `assets/spritesheet.js` | Carga el spritesheet y expone helpers de dibujo |
 
 ### Assets
@@ -39,7 +39,7 @@ drawFrame(ctx, frame, x, y, w, h)          // dibuja un frame de animación
 
 | Nombre | Descripción |
 |---|---|
-| `paddle` | Paleta (162×14 px) |
+| `paddle` | Paleta (sprite de 162×14 px; se dibuja a 81×14) |
 | `ball` | Pelota (16×16 px) |
 | `block_gray`, `block_red`, `block_yellow`, `block_cyan`, `block_magenta`, `block_hotpink`, `block_green` | Bloques por color |
 
@@ -48,14 +48,16 @@ Las explosiones usan `EXPLOSION_FRAMES[color]` (4 frames) y duran `EXPLOSION_DUR
 ### Estado del juego (en `game.js`)
 
 ```js
-gameState   // 'playing' | 'paused' | 'gameover' | 'win'
+gameState   // 'playing' | 'gameover' | 'win'
+isPaused    // boolean — la pausa es independiente de gameState (P / Escape)
 score       // number
 lives       // number (inicia en 3)
-currentLevel // número de nivel activo (0-indexed sobre LEVELS)
-paddle      // { x, y, w: 162, h: 14 }
+currentLevel // número de nivel activo, 1–5 (se usa como LEVELS[currentLevel - 1])
+paddle      // { x, y, w: 81, h: 14 }
 ball        // { x, y, w: 16, h: 16, vx, vy }
-blocks[]    // [{ x, y, w, h, color, alive }]
+blocks[]    // [{ x, y, w: 64, h: 24, color, alive }]
 explosions[]// animaciones activas
+shake       // { amplitude, duration, elapsed } — sacudida de pantalla (spec 04)
 ```
 
 ## Flujo de trabajo spec-driven
@@ -105,5 +107,6 @@ La referencia completa está en `.agents/skills/spec/template.md`.
 | 01 | `mvp-arkanoid` | Implementado |
 | 02 | `animacion-explosion-bloques` | Implementado |
 | 03 | `sonidos-y-niveles` | Implementado |
+| 04 | `sacudida-pantalla` | Implementado |
 
-El próximo spec será `04-...`.
+El próximo spec será `05-...`.

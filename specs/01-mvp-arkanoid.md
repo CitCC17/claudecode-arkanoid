@@ -46,7 +46,7 @@ lives; // number, inicia en 3
 ### Paddle
 
 ```js
-paddle = { x, y, w: 162, h: 14 };
+paddle = { x, y, w: 81, h: 14 };
 // x se actualiza con mouse y teclado; y fija en 560
 ```
 
@@ -61,10 +61,10 @@ ball = { x, y, w: 16, h: 16, vx, vy };
 ### Bloques
 
 ```js
-blocks = [{ x, y, w: 32, h: 16, color, alive: bool }];
+blocks = [{ x, y, w: 64, h: 24, color, alive: bool }];
 // 10 columnas × 6 filas
 // colores por fila (de arriba a abajo): red, yellow, cyan, magenta, hotpink, green
-// posición inicial: x desde 104, y desde 80, sin gaps entre bloques
+// posición inicial: x desde 80, y desde 80, sin gaps entre bloques
 ```
 
 ---
@@ -107,16 +107,17 @@ blocks = [{ x, y, w: 32, h: 16, color, alive: bool }];
 - [x] El canvas mide 800×600 px y tiene fondo negro
 - [x] El paddle se mueve con el mouse sin salirse del canvas
 - [x] El paddle se mueve con ←→ sin salirse del canvas
-- [ ] La pelota arranca moviéndose al cargar la página
-- [ ] La pelota rebota en las tres paredes (izquierda, derecha, techo)
-- [ ] La pelota rebota en el paddle
-- [ ] Se dibujan 60 bloques (10×6) con sus colores por fila
-- [ ] Al tocar un bloque, desaparece y el score sube 10 puntos
-- [ ] El score se muestra en el HUD durante el juego
-- [ ] Las vidas (3) se muestran en el HUD durante el juego
-- [ ] Al caer la pelota se pierde una vida y la pelota se reposiciona sobre el paddle
-- [ ] Al llegar a 0 vidas aparece overlay "GAME OVER"
+- [x] La pelota arranca moviéndose al cargar la página
+- [x] La pelota rebota en las tres paredes (izquierda, derecha, techo)
+- [x] La pelota rebota en el paddle
+- [x] Se dibujan 60 bloques (10×6) con sus colores por fila
+- [x] Al tocar un bloque, desaparece y el score sube 10 puntos
+- [x] El score se muestra en el HUD durante el juego
+- [x] Las vidas (3) se muestran en el HUD durante el juego
+- [x] Al caer la pelota se pierde una vida y la pelota se reposiciona sobre el paddle
+- [x] Al llegar a 0 vidas aparece overlay "GAME OVER"
 - [ ] Al romper todos los bloques aparece overlay "¡GANASTE!"
+  > **Reemplazado por spec 03:** al romper todos los bloques se carga el siguiente nivel; tras el nivel 5 aparece "¡Completaste el juego!".
 
 ---
 

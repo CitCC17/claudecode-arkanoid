@@ -24,6 +24,7 @@ Abre `index.html` directamente en el navegador. No requiere servidor ni build.
 - 5 niveles con patrones de bloques distintos
 - La pelota aumenta un 10 % de velocidad por nivel (nivel 5 ≈ +46 % vs nivel 1)
 - Animación de explosión al destruir un bloque (4 frames del spritesheet)
+- Sacudida de pantalla al destruir un bloque (más fuerte con el último bloque del nivel)
 - Efectos de sonido al rebotar y al romper bloques
 - Overlay de pausa con selector de nivel
 - Overlay de Game Over y de victoria ("¡Completaste el juego!")
@@ -60,3 +61,4 @@ specs/              # specs de diseño (flujo spec-driven)
 | 01  | MVP jugable (paddle, pelota, bloques, vidas, score) | Implementado |
 | 02  | Animación de explosión al romper bloques            | Implementado |
 | 03  | Sonidos y 5 niveles con selector en pausa           | Implementado |
+| 04  | Sacudida de pantalla al destruir bloques            | Implementado |

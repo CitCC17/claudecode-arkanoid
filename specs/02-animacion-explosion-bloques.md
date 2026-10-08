@@ -35,8 +35,8 @@ explosions = [
   {
     x, // posición x del bloque destruido
     y, // posición y del bloque destruido
-    w, // ancho del bloque (32)
-    h, // alto del bloque (16)
+    w, // ancho del bloque (64)
+    h, // alto del bloque (24)
     color, // color del bloque — clave en EXPLOSION_FRAMES
     elapsed, // ms transcurridos desde el inicio (inicia en 0)
   },
@@ -73,7 +73,7 @@ No se persiste ningún dato entre sesiones.
 - [x] La animación recorre los 4 frames de `EXPLOSION_FRAMES[color]` en 150 ms
 - [x] El color de la explosión corresponde al color del bloque destruido
 - [x] El bloque ya no genera colisiones desde el instante en que es destruido
-- [ ] Se pueden reproducir múltiples explosiones simultáneas sin que se interfieran
+- [x] Se pueden reproducir múltiples explosiones simultáneas sin que se interfieran
 - [x] Al terminar la animación (150 ms), la explosión se elimina del array y deja de dibujarse
 - [x] El juego no se pausa ni pierde fluidez durante las explosiones
 
