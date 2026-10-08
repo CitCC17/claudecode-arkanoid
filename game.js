@@ -11,6 +11,8 @@ const BLOCKS_ORIGIN_X = (800 - BLOCK_COLS * BLOCK_W) / 2;
 const BLOCKS_ORIGIN_Y = 80;
 const BASE_BALL_VX = 200;
 const BASE_BALL_VY = -300;
+const SHAKE_BLOCK       = { amplitude: 3, duration: 120 }; // px, ms — bloque normal
+const SHAKE_LEVEL_CLEAR = { amplitude: 6, duration: 240 }; // px, ms — último bloque del nivel
 
 const paddle = { x: 0, y: 560, w: 81, h: 14 };
 const ball   = { x: 0, y: 0, w: 16, h: 16, vx: 200, vy: -300 };
@@ -20,6 +22,7 @@ const breakSound  = new Audio('assets/sounds/break-sound.mp3');
 
 let blocks = [];
 let explosions = [];
+let shake = { amplitude: 0, duration: 0, elapsed: 0 };
 let lives = 3;
 let score = 0;
 let gameState = 'playing';
