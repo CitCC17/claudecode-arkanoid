@@ -151,6 +151,7 @@ function update(dt) {
       score += 10;
       ball.vy = -ball.vy;
       breakSound.cloneNode().play();
+      startShake(blocks.every(b => !b.alive) ? SHAKE_LEVEL_CLEAR : SHAKE_BLOCK);
       if (blocks.every(b => !b.alive)) {
         if (currentLevel < 5) loadLevel(currentLevel + 1);
         else gameState = 'win';
