@@ -61,6 +61,14 @@ function loadLevel(n) {
   ball.vy = BASE_BALL_VY * level.speed;
 }
 
+// Inicia una sacudida; si ya hay una activa, se reinicia con el máximo de ambas
+function startShake(config) {
+  const active = shake.elapsed < shake.duration;
+  shake.amplitude = active ? Math.max(shake.amplitude, config.amplitude) : config.amplitude;
+  shake.duration  = active ? Math.max(shake.duration, config.duration) : config.duration;
+  shake.elapsed   = 0;
+}
+
 function collideAABB(block) {
   return (
     ball.x < block.x + block.w &&
