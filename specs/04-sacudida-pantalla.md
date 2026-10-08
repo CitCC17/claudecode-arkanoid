@@ -1,6 +1,6 @@
 # 04 — Sacudida de pantalla al destruir bloques
 
-- **Estado:** Aprobado
+- **Estado:** Implementado
 - **Dependencias:** 02-animacion-explosion-bloques, 03-sonidos-y-niveles
 - **Objetivo:** Sacudir todo el canvas brevemente al destruir un bloque, con una sacudida más fuerte al romper el último bloque del nivel.
 
@@ -81,17 +81,17 @@ let shake = {
 
 ## Criterios de aceptación
 
-- [ ] Al destruir un bloque que no es el último del nivel, el canvas tiembla durante 120 ms con un desplazamiento máximo de 3 px
-- [ ] Al destruir el último bloque de un nivel, el canvas tiembla durante 240 ms con un desplazamiento máximo de 6 px
-- [ ] El desplazamiento se reduce hasta 0 al terminar la sacudida y el canvas queda en su posición original
-- [ ] Romper dos bloques seguidos reinicia la sacudida sin superar los 3 px (o 6 px si uno era el último del nivel)
-- [ ] Al pausar durante una sacudida, el overlay de pausa se ve quieto y sus botones responden al clic
-- [ ] Al reanudar la pausa, la sacudida continúa desde donde se quedó
-- [ ] Al romper el último bloque del nivel 5, la sacudida se ve sobre el overlay "¡Completaste el juego!" y luego se detiene
-- [ ] No aparecen franjas ni restos del frame anterior en los bordes del canvas durante la sacudida
-- [ ] La explosión del spritesheet y `break-sound.mp3` siguen funcionando igual que antes
-- [ ] El score, las vidas y el avance de nivel no cambian respecto al comportamiento previo
-- [ ] El juego carga sin errores en la consola
+- [x] Al destruir un bloque que no es el último del nivel, el canvas tiembla durante 120 ms con un desplazamiento máximo de 3 px
+- [x] Al destruir el último bloque de un nivel, el canvas tiembla durante 240 ms con un desplazamiento máximo de 6 px
+- [x] El desplazamiento se reduce hasta 0 al terminar la sacudida y el canvas queda en su posición original
+- [x] Romper dos bloques seguidos reinicia la sacudida sin superar los 3 px (o 6 px si uno era el último del nivel)
+- [x] Al pausar durante una sacudida, el overlay de pausa se ve quieto y sus botones responden al clic
+- [x] Al reanudar la pausa, la sacudida continúa desde donde se quedó
+- [x] Al romper el último bloque del nivel 5, la sacudida se ve sobre el overlay "¡Completaste el juego!" y luego se detiene
+- [x] No aparecen franjas ni restos del frame anterior en los bordes del canvas durante la sacudida
+- [x] La explosión del spritesheet y `break-sound.mp3` siguen funcionando igual que antes
+- [x] El score, las vidas y el avance de nivel no cambian respecto al comportamiento previo
+- [x] El juego carga sin errores en la consola
 
 ---
 
