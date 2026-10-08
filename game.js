@@ -114,6 +114,9 @@ document.addEventListener('keyup', (e) => {
 });
 
 function update(dt) {
+  // Sacudida: avanza antes del return para que también decaiga en 'win'
+  if (shake.elapsed < shake.duration) shake.elapsed += dt * 1000;
+
   if (gameState !== 'playing') return;
 
   // Paddle
