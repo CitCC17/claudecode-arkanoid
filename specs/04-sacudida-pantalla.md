@@ -1,6 +1,6 @@
 # 04 — Sacudida de pantalla al destruir bloques
 
-- **Estado:** Draft
+- **Estado:** Aprobado
 - **Dependencias:** 02-animacion-explosion-bloques, 03-sonidos-y-niveles
 - **Objetivo:** Sacudir todo el canvas brevemente al destruir un bloque, con una sacudida más fuerte al romper el último bloque del nivel.
 
