@@ -230,6 +230,13 @@ function draw() {
   ctx.fillStyle = '#000';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+  // Sacudida: el fondo ya se pintó sin desplazar; el resto se mueve
+  ctx.save();
+  if (shake.elapsed < shake.duration && !isPaused) {
+    const amp = shake.amplitude * (1 - shake.elapsed / shake.duration);
+    ctx.translate((Math.random() * 2 - 1) * amp, (Math.random() * 2 - 1) * amp);
+  }
+
   for (const block of blocks) {
     if (block.alive) drawSprite(ctx, 'block_' + block.color, block.x, block.y, block.w, block.h);
   }
@@ -261,6 +268,8 @@ function draw() {
   if (gameState === 'gameover') drawOverlay('GAME OVER');
   if (gameState === 'win')      drawOverlay('¡Completaste el juego!');
   if (isPaused)                 drawPauseOverlay();
+
+  ctx.restore();
 }
 
 let lastTime = null;
